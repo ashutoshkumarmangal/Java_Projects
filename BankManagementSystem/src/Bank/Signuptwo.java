@@ -214,6 +214,9 @@ import java.util.Random;
                     c.s.executeUpdate(query);//dml command to execute the query in database
 
                 //signup3 object
+                setVisible(false);
+                new Signupthree(formno).setVisible(true);
+
             }catch (Exception e){
                 System.out.println(e);
             }
