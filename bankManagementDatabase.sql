@@ -1,0 +1,13 @@
+show databases;
+use bankmanagementsystem;
+create table signuptwo(formno varchar(20), religion varchar(20), category varchar(20), income varchar(20), education varchar(20), occupation varchar(20), pan varchar(20), aadhar varchar(20), seniorcitizen varchar(20), existingaccount varchar(20));
+show tables;
+select * from login;
+create table bank(pin varchar(10),date varchar(50), type varchar(20),amount varchar(20));
+select * from signuptwo;
+select * from signup;
+create table signupthree(formno varchar(20), accountType varchar(20),cardnumber varchar(25), pin varchar(10), facility varchar(100) );
+create table login(formno varchar(20), cardnumber varchar(25), pin varchar(10));
+select * from signupthree;
+
+select * from bank;

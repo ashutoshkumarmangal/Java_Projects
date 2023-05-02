@@ -89,24 +89,28 @@ public class Login extends JFrame implements ActionListener{   //now since we im
              cardTextField.setText(""); //when clear pressed everything disappear
              pinTextField.setText("");
 
-        } else if (ae.getSource()==login) {
-            Conn conn = new Conn();
+        } else if (ae.getSource() == login) {
             String cardnumber = cardTextField.getText();
-            String pinnumber  = pinTextField.getText();
-            String query = "select * from login where cardnumber = '"+cardnumber+"'and pin = '"+pinnumber+"'";
-            try{
-             ResultSet rs = conn.s.executeQuery(query);
-             if(rs.next()){
-                 setVisible(false);
-                 new Transaction(pinnumber).setVisible(true);
-             }
-             else {
-                 JOptionPane.showMessageDialog(null," Incorrect Card Number or Pin");
-             }
-            }catch (Exception e){
-                System.out.println(e);
+            String pinnumber = pinTextField.getText();
+            if (cardnumber.matches("[0-9]+") && pinnumber.matches("[0-9]+")) { // Input validation for card number and pin
+                Conn conn = new Conn();
+                String query = "select * from login where cardnumber = '" + cardnumber + "' and pin = '" + pinnumber + "'";
+                try {
+                    ResultSet rs = conn.s.executeQuery(query);
+                    if (rs.next()) {
+                        setVisible(false);
+                        new Transaction(pinnumber).setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Incorrect Card Number or Pin");
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter valid Card Number or Pin");
             }
-        } else if (ae.getSource() == signup) {
+
+            } else if (ae.getSource() == signup) {
             setVisible(false);
             new Signupone().setVisible(true);
         }
